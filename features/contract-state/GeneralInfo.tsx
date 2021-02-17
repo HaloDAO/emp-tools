@@ -156,6 +156,8 @@ const GeneralInfo = () => {
                     (url.includes("kraken") && "Kraken") ||
                     (url.includes("binance") && "Binance") ||
                     (url.includes("bitstamp") && "Bitstamp") ||
+                    (url.includes("coinmarketcap") && "CoinMarketCap") ||
+                    (url.includes("coingecko") && "CoinGecko") ||
                     "") +
                   (index < sourceUrls.length - 1 ? ", " : "]")}
               </Link>

@@ -8,7 +8,6 @@ import {
   Tabs,
   Hidden,
   Button,
-  IconButton,
   Menu,
   MenuItem,
   Grid,
@@ -28,6 +27,7 @@ import EmpAddress from "../containers/EmpAddress";
 import Collateral from "../containers/Collateral";
 import Token from "../containers/Token";
 import WethContract from "../containers/WethContract";
+import Connection from "../containers/Connection";
 
 import { YIELD_TOKENS } from "../constants/yieldTokens";
 
@@ -60,6 +60,7 @@ export default function Index() {
   const { address: tokenAddress } = Token.useContainer();
   const { contract: weth } = WethContract.useContainer();
   const { empAddress } = EmpAddress.useContainer();
+  const { signer, network } = Connection.useContainer();
 
   const isYieldToken =
     tokenAddress &&
@@ -108,125 +109,63 @@ export default function Index() {
       <Box py={4}>
         <Header />
         <EmpSelector />
-        <Hidden only={["sm", "xs"]}>
-          <StyledTabs
-            value={options.indexOf(selectedMenuItem)}
-            onChange={(_, index) => handleMenuItemClick(index)}
-          >
-            {options.map((option, index) => (
-              <Tab key={index} label={option} disableRipple />
-            ))}
-          </StyledTabs>
-        </Hidden>
-        <Hidden only={["md", "lg", "xl"]}>
-          <div>
-            <Box pt={1} pb={2}>
-              <Grid container spacing={2}>
-                <Grid item>
-                  <Button variant="outlined" onClick={handleClickListItem}>
-                    <MenuIcon />
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Typography style={{ marginTop: `8px` }}>
-                    <strong>Current page:</strong> {selectedMenuItem}
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Box>
-            <Menu
-              anchorEl={anchorEl}
-              keepMounted
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              {options.map((option, index) => (
-                <MenuItem
-                  key={index}
-                  selected={index === options.indexOf(selectedMenuItem)}
-                  onClick={(_) => handleMenuItemClick(index)}
+        {signer && network && (
+          <Box mt={3}>
+            <Hidden only={["sm", "xs"]}>
+              <StyledTabs
+                value={options.indexOf(selectedMenuItem)}
+                onChange={(_, index) => handleMenuItemClick(index)}
+              >
+                {options.map((option, index) => (
+                  <Tab key={index} label={option} disableRipple />
+                ))}
+              </StyledTabs>
+            </Hidden>
+            <Hidden only={["md", "lg", "xl"]}>
+              <div>
+                <Box pt={1} pb={2}>
+                  <Grid container spacing={2}>
+                    <Grid item>
+                      <Button variant="outlined" onClick={handleClickListItem}>
+                        <MenuIcon />
+                      </Button>
+                    </Grid>
+                    <Grid item>
+                      <Typography style={{ marginTop: `8px` }}>
+                        <strong>Current page:</strong> {selectedMenuItem}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Box>
+                <Menu
+                  anchorEl={anchorEl}
+                  keepMounted
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
                 >
-                  {option}
-                </MenuItem>
-              ))}
-            </Menu>
-          </div>
-        </Hidden>
-        {selectedMenuItem === "General Info" && (
-          <>
-            <Blurb>
-              <Typography>
-                The Expiring Multi Party (EMP) is{" "}
-                <a
-                  href="https://umaproject.org/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  UMA
-                </a>
-                's most current financial smart contract template. This UI is a
-                community-made tool to make interfacing with the protocol
-                easier, please use at your own risk. The source code can be
-                viewed{" "}
-                <a
-                  href="https://github.com/UMAprotocol/emp-tools"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  here
-                </a>
-                . UMA's main Github can be viewed{" "}
-                <a
-                  href="https://github.com/UMAprotocol/protocol"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  here
-                </a>
-                .
-              </Typography>
-            </Blurb>
-            <ContractState />
-          </>
+                  {options.map((option, index) => (
+                    <MenuItem
+                      key={index}
+                      selected={index === options.indexOf(selectedMenuItem)}
+                      onClick={(_) => handleMenuItemClick(index)}
+                    >
+                      {option}
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </div>
+            </Hidden>
+            {selectedMenuItem === "General Info" && <ContractState />}
+            {selectedMenuItem === "Manage Position" && <ManagePosition />}
+            {selectedMenuItem === "All Positions" && <AllPositions />}
+            {selectedMenuItem === "yUSD Yield" && <Yield />}
+            {selectedMenuItem === "Wrap/Unwrap WETH" && <Weth />}
+            {selectedMenuItem === "Analytics" && <Analytics />}
+          </Box>
         )}
-        {selectedMenuItem === "Manage Position" && <ManagePosition />}
-        {selectedMenuItem === "All Positions" && <AllPositions />}
-        {selectedMenuItem === "yUSD Yield" && <Yield />}
-        {selectedMenuItem === "Wrap/Unwrap WETH" && <Weth />}
-        {selectedMenuItem === "Analytics" && <Analytics />}
       </Box>
       <Box py={4} textAlign="center">
-        <IconButton
-          style={{ marginRight: `8px` }}
-          target="_blank"
-          href="https://github.com/UMAprotocol/emp-tools"
-          size="medium"
-        >
-          <GitHubIcon fontSize="inherit" />
-        </IconButton>
-        <IconButton
-          style={{ marginRight: `8px` }}
-          target="_blank"
-          href="https://twitter.com/umaprotocol"
-          size="medium"
-        >
-          <TwitterIcon fontSize="inherit" />
-        </IconButton>
-        <a
-          href="/terms"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ marginRight: `16px` }}
-        >
-          <strong>Terms</strong>
-        </a>
-        <a
-          href="https://vercel.com/?utm_source=uma%2Femp-tools"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <strong>Powered by ▲ Vercel</strong>
-        </a>
+        Alpha version (Kovan). Built on UMA.
       </Box>
     </Container>
   );

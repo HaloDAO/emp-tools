@@ -10,9 +10,10 @@ import Connection from "../../containers/Connection";
 import { getExchangeInfo } from "../../utils/getExchangeLinks";
 
 const DataBox = styled(Box)`
-  border: 1px solid #434343;
+  background-color: rgba(255, 255, 255, 0.09);
   padding: 1rem 1rem;
   margin: 1rem 1rem;
+  border-radius: 4px;
 `;
 
 const Label = styled.div`
