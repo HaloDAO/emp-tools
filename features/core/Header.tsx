@@ -51,7 +51,7 @@ const Header = () => {
   return (
     <Box display="flex" justifyContent="space-between" alignItems="center">
       <Box>
-        <Typography variant="h4">HaloDAO Synth Minter</Typography>
+        <Typography variant="h4">HaloDAO Minter</Typography>
       </Box>
       <Box display="flex" alignItems="center">
         {address && (
