@@ -16,13 +16,12 @@ export const EMPs: { [networkId: number]: string[] } = {
     "0xA000Dfe84A1852865d5231e0F6CBF0De08888abE", // uUSDrBTC Kovan Oct20
     "0x10E3866b5F52d847F24aaAA14BcAd22b74CC14e2", // uUSDrBTC Kovan Nov20
     "0x3d7d563F4679C750e462Eae4271d2bd84dF66060", // uUSDrETH Kovan Nov20
-    "0x353E93748f809E409d998f0F187F2bEaEA0A6561", // PHPDAI
   ],
 };
 
 export const HALODAO_EMPs: { [networkId: number]: string[] } = {
   1: [],
   42: [
-    "0x353E93748f809E409d998f0F187F2bEaEA0A6561", // PHPDAI (UBE)
+    "0xe577A30A75EEc6A60280d7d04E8688fDc83A3346", // PHPDAI (UBE)
   ],
 };

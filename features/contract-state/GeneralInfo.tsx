@@ -109,7 +109,7 @@ const GeneralInfo = () => {
         <Typography variant="h5">{`General Info `}</Typography>
         <AddressUtils />
 
-        <Status>
+        {/* <Status>
           <Label>Expiry date: </Label>
           <Tooltip title={`Timestamp: ${expiryTimestamp}`} interactive>
             <span>{expiryDate} UTC</span>
@@ -129,7 +129,7 @@ const GeneralInfo = () => {
             ){`: `}
           </Label>
           {isExpired}
-        </Status>
+        </Status> */}
 
         <Status>
           <Label>Price identifier: </Label>
