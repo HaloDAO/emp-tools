@@ -92,7 +92,7 @@ export const PRICEFEED_PARAMS: PricefeedParamsMap = {
     invertedPrice: true,
     source: [
       proxyUrl(
-        `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=DAI&convert=PHP&CMC_PRO_API_KEY=${process.env.COINMARKETCAP_API_KEY}`
+        `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=DAI&convert=PHP&CMC_PRO_API_KEY=${process.env.NEXT_PUBLIC_COINMARKETCAP_API_KEY}`
       ),
       "https://api.coingecko.com/api/v3/simple/token_price/ethereum?contract_addresses=0x6b175474e89094c44da98b954eedeac495271d0f&vs_currencies=php",
     ],
