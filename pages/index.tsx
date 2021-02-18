@@ -68,7 +68,8 @@ export default function Index() {
 
   const buildOptionsList = () => {
     // Default list that all contracts have.
-    let menuOptions = ["General Info", "Manage Position", "All Positions"];
+    //let menuOptions = ["General Info", "Manage Position", "All Positions"];
+    let menuOptions = ["General Info", "Manage Position"];
     // If it is weth collateral contract then add the weth option.
     if (weth && collAddress?.toLowerCase() == weth.address.toLowerCase()) {
       menuOptions.push("Wrap/Unwrap WETH");

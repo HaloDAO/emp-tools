@@ -176,10 +176,10 @@ const GeneralInfo = () => {
           <Label>Collateral requirement: </Label>
           {collReqPct}
         </Status>
-        <Status>
+        {/* <Status>
           <Label>Unique sponsors: </Label>
           {sponsorCount}
-        </Status>
+        </Status> */}
         <Status>
           <Label>Minimum sponsor tokens: </Label>
           {minSponsorTokensSymbol}
