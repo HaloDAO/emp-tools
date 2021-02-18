@@ -61,7 +61,6 @@ const Totals = () => {
     totalTokens !== null &&
     collSymbol !== null &&
     tokenSymbol !== null &&
-    exchangeInfo !== undefined &&
     collAddress !== null &&
     tokenAddress !== null &&
     provider !== null
@@ -81,9 +80,13 @@ const Totals = () => {
     });
     const prettyCollSymbol = collSymbol;
     const prettyTokenSymbol = tokenSymbol;
-    const getExchangeLinkCollateral = exchangeInfo.getExchangeUrl(collAddress);
-    const getExchangeLinkToken = exchangeInfo.getExchangeUrl(tokenAddress);
-    const exchangeName = exchangeInfo.name;
+    const getExchangeLinkCollateral = exchangeInfo
+      ? exchangeInfo.getExchangeUrl(collAddress)
+      : "";
+    const getExchangeLinkToken = exchangeInfo
+      ? exchangeInfo.getExchangeUrl(tokenAddress)
+      : "";
+    const exchangeName = exchangeInfo ? exchangeInfo.name : "Unknown";
 
     const addTokenToMetamask = () => {
       // @ts-ignore
