@@ -4,7 +4,7 @@ import uma from "@studydefi/money-legos/uma";
 import erc20 from "@studydefi/money-legos/erc20";
 
 import Connection from "../../containers/Connection";
-import { EMPs } from "./EMPs";
+import { HALODAO_EMPs } from "./EMPs";
 
 export interface Emp {
   name: string;
@@ -21,22 +21,24 @@ const useEmpList = () => {
     if (signer && network) {
       setLoading(true);
       // For each EMP address, find its token name and address
-      const promises = EMPs[network.chainId].map(async (empAddress: string) => {
-        const emp = new ethers.Contract(
-          empAddress,
-          uma.expiringMultiParty.abi,
-          signer
-        );
-        const tokenAddr = await emp.tokenCurrency();
-        const token = new ethers.Contract(tokenAddr, erc20.abi, signer);
-        const tokenName = await token.name();
-        const tokenSymbol = await token.symbol();
-        return {
-          name: tokenName,
-          symbol: tokenSymbol,
-          address: empAddress,
-        };
-      });
+      const promises = HALODAO_EMPs[network.chainId].map(
+        async (empAddress: string) => {
+          const emp = new ethers.Contract(
+            empAddress,
+            uma.expiringMultiParty.abi,
+            signer
+          );
+          const tokenAddr = await emp.tokenCurrency();
+          const token = new ethers.Contract(tokenAddr, erc20.abi, signer);
+          const tokenName = await token.name();
+          const tokenSymbol = await token.symbol();
+          return {
+            name: tokenName,
+            symbol: tokenSymbol,
+            address: empAddress,
+          };
+        }
+      );
 
       // set state w/ data
       const emps = await Promise.all(promises);

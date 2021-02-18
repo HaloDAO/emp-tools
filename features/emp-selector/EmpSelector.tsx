@@ -72,11 +72,11 @@ const EmpSelector = () => {
           ) : (
             <MenuItem value={0}>
               <ListItemText
-                primary={loading ? "Please wait" : "Select an EMP"}
+                primary={loading ? "Please wait" : "Select a synth"}
                 secondary={
                   loading
-                    ? "Loading list of EMPs..."
-                    : `${emps.length} EMPs found`
+                    ? "Loading list of synths.."
+                    : `${emps.length} synth(s) found`
                 }
               />
             </MenuItem>

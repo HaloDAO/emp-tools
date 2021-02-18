@@ -17,6 +17,10 @@ const muiTheme = createMuiTheme({
     type: "dark",
     primary: { main: "#AAA" },
     secondary: { main: "#ff4a4a" },
+    background: {
+      default: "#5c2a72",
+      paper: "#5c2a72",
+    },
   },
   typography: {
     fontSize: 16,

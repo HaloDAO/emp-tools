@@ -18,3 +18,10 @@ export const EMPs: { [networkId: number]: string[] } = {
     "0x3d7d563F4679C750e462Eae4271d2bd84dF66060", // uUSDrETH Kovan Nov20
   ],
 };
+
+export const HALODAO_EMPs: { [networkId: number]: string[] } = {
+  1: [],
+  42: [
+    "0xe577A30A75EEc6A60280d7d04E8688fDc83A3346", // PHPDAI (UBE)
+  ],
+};

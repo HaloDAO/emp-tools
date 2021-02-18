@@ -10,9 +10,10 @@ import Connection from "../../containers/Connection";
 import { getExchangeInfo } from "../../utils/getExchangeLinks";
 
 const DataBox = styled(Box)`
-  border: 1px solid #434343;
+  background-color: rgba(255, 255, 255, 0.09);
   padding: 1rem 1rem;
   margin: 1rem 1rem;
+  border-radius: 4px;
 `;
 
 const Label = styled.div`
@@ -60,7 +61,6 @@ const Totals = () => {
     totalTokens !== null &&
     collSymbol !== null &&
     tokenSymbol !== null &&
-    exchangeInfo !== undefined &&
     collAddress !== null &&
     tokenAddress !== null &&
     provider !== null
@@ -80,9 +80,13 @@ const Totals = () => {
     });
     const prettyCollSymbol = collSymbol;
     const prettyTokenSymbol = tokenSymbol;
-    const getExchangeLinkCollateral = exchangeInfo.getExchangeUrl(collAddress);
-    const getExchangeLinkToken = exchangeInfo.getExchangeUrl(tokenAddress);
-    const exchangeName = exchangeInfo.name;
+    const getExchangeLinkCollateral = exchangeInfo
+      ? exchangeInfo.getExchangeUrl(collAddress)
+      : "";
+    const getExchangeLinkToken = exchangeInfo
+      ? exchangeInfo.getExchangeUrl(tokenAddress)
+      : "";
+    const exchangeName = exchangeInfo ? exchangeInfo.name : "Unknown";
 
     const addTokenToMetamask = () => {
       // @ts-ignore
