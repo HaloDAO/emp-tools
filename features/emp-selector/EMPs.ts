@@ -22,6 +22,6 @@ export const EMPs: { [networkId: number]: string[] } = {
 export const HALODAO_EMPs: { [networkId: number]: string[] } = {
   1: [],
   42: [
-    "0xad2968bAf2cE98896c5c5eE92c7613b16501D603", // PHPDAI (UBE),
+    "0x235e21882AC2E2B66aF7C37004f5fD59AD9b0B0c", // PHPDAI (UBE),
   ],
 };
