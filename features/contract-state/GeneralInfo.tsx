@@ -109,7 +109,7 @@ const GeneralInfo = () => {
         <Typography variant="h5">{`General Info `}</Typography>
         <AddressUtils />
 
-        <Status>
+        {/* <Status>
           <Label>Expiry date: </Label>
           <Tooltip title={`Timestamp: ${expiryTimestamp}`} interactive>
             <span>{expiryDate} UTC</span>
@@ -129,7 +129,7 @@ const GeneralInfo = () => {
             ){`: `}
           </Label>
           {isExpired}
-        </Status>
+        </Status> */}
 
         <Status>
           <Label>Price identifier: </Label>
@@ -156,6 +156,8 @@ const GeneralInfo = () => {
                     (url.includes("kraken") && "Kraken") ||
                     (url.includes("binance") && "Binance") ||
                     (url.includes("bitstamp") && "Bitstamp") ||
+                    (url.includes("coinmarketcap") && "CoinMarketCap") ||
+                    (url.includes("coingecko") && "CoinGecko") ||
                     "") +
                   (index < sourceUrls.length - 1 ? ", " : "]")}
               </Link>
@@ -174,10 +176,10 @@ const GeneralInfo = () => {
           <Label>Collateral requirement: </Label>
           {collReqPct}
         </Status>
-        <Status>
+        {/* <Status>
           <Label>Unique sponsors: </Label>
           {sponsorCount}
-        </Status>
+        </Status> */}
         <Status>
           <Label>Minimum sponsor tokens: </Label>
           {minSponsorTokensSymbol}

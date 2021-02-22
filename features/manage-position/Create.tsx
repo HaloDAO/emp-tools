@@ -278,9 +278,7 @@ const Create = () => {
         <Box>
           <Box py={2}>
             <Typography>
-              <i>
-                Mint new synthetic tokens ({tokenSymbol}) via this EMP contract.
-              </i>
+              <i>Mint new synthetic tokens ({tokenSymbol}).</i>
             </Typography>
           </Box>
           <Box pb={2}>
@@ -540,7 +538,9 @@ const Create = () => {
     return (
       <Box py={2}>
         <Typography>
-          <i>Please first connect and select an EMP from the dropdown above.</i>
+          <i>
+            Please first connect and select a synth from the dropdown above.
+          </i>
         </Typography>
       </Box>
     );

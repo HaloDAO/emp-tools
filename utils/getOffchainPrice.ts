@@ -30,6 +30,14 @@ function _getBitstampPriceFromJSON(jsonData: any) {
   return Number(jsonData.last);
 }
 
+function _getCoinMarketCapPriceFromJSON(jsonData: any) {
+  return Number(jsonData.data.DAI.quote.PHP.price);
+}
+
+function _getCoinGeckoPriceFromJSON(jsonData: any) {
+  return Number(jsonData[Object.keys(jsonData)[0]].php);
+}
+
 // This is needed because our new cors proxy wont forward http or https. We really only use https.
 function stripProtocol(url: string) {
   return url.replace("https://", "");
@@ -80,6 +88,15 @@ export const PRICEFEED_PARAMS: PricefeedParamsMap = {
       "https://api.pro.coinbase.com/products/BTC-USD/trades?limit=1",
     ],
   },
+  phpdai: {
+    invertedPrice: true,
+    source: [
+      proxyUrl(
+        `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=DAI&convert=PHP&CMC_PRO_API_KEY=${process.env.NEXT_PUBLIC_COINMARKETCAP_API_KEY}`
+      ),
+      "https://api.coingecko.com/api/v3/simple/token_price/ethereum?contract_addresses=0x6b175474e89094c44da98b954eedeac495271d0f&vs_currencies=php",
+    ],
+  },
 };
 
 export function getPricefeedParamsFromTokenSymbol(symbol: string | null) {
@@ -103,6 +120,8 @@ export function getPricefeedParamsFromTokenSymbol(symbol: string | null) {
       return PRICEFEED_PARAMS.usdbtc;
     case symbol?.includes("YD-ETH"):
       return PRICEFEED_PARAMS.usdeth;
+    case symbol?.includes("UBE"):
+      return PRICEFEED_PARAMS.phpdai;
     default:
       return null;
   }
@@ -141,6 +160,10 @@ export const getOffchainPriceFromTokenSymbol = async (symbol: string) => {
               return _getKrakenPriceFromJSON(json);
             case url.includes("bitstamp"):
               return _getBitstampPriceFromJSON(json);
+            case url.includes("coinmarketcap"):
+              return _getCoinMarketCapPriceFromJSON(json);
+            case url.includes("coingecko"):
+              return _getCoinGeckoPriceFromJSON(json);
             default:
               return null;
           }

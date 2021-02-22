@@ -372,7 +372,7 @@ const Withdraw = () => {
               <li>
                 <strong>"Slow" withdraw: </strong> To withdraw your CR below the
                 GCR, you will need to wait a liveness period before completing
-                your withdrawal. For this EMP this is {withdrawLivenessString}{" "}
+                your withdrawal. For this synth this is {withdrawLivenessString}{" "}
                 hours. When performing this kind of withdrawal you should ensure
                 that your position is sufficiently collateralized above the CR
                 requirement after the withdrawal or you will risk liquidation.
