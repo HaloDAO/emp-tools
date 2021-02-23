@@ -1,0 +1,23 @@
+version: 2.1
+jobs:
+  test:
+    docker:
+      - image: circleci/node:14.15.1
+    steps:
+      - checkout
+      - run:
+          command: yarn test
+  build:
+    docker:
+      - image: circleci/node:14.15.1
+    steps:
+      - checkout
+      - run:
+          command: yarn build
+workflows:
+  test-and-build:
+    jobs:
+      - test
+      - build:
+          requires:
+            - test
