@@ -1,0 +1,30 @@
+{
+  "projects": {
+    "default": "halo-dev-eb31c",
+    "staging": "halo-staging-504ed",
+    "prod": "halo-prod-f792f"
+  },
+  "targets": {
+    "halo-dev-eb31c": {
+      "hosting": {
+        "develop": [
+          "dev-minter-halodao"
+        ]
+      }
+    },
+    "halo-staging-504ed": {
+      "hosting": {
+        "staging": [
+          "staging-minter-halodao"
+        ]
+      }
+    },
+    "halo-prod-f792f": {
+      "hosting": {
+        "prod": [
+          "prod-minter-halodao"
+        ]
+      }
+    }
+  }
+}
