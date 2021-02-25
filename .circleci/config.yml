@@ -1,0 +1,73 @@
+version: 2.1
+jobs:
+  test:
+    docker:
+      - image: circleci/node:14.15.1
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: yarn
+      - run:
+          name: Run tests
+          command: yarn test
+  build:
+    docker:
+      - image: circleci/node:14.15.1
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: yarn
+      - run:
+          name: Build project
+          command: yarn build
+  deploy-dev:
+    docker:
+      - image: circleci/node:14.15.1
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: yarn
+      - run:
+          name: Build project
+          command: yarn build
+      - run:
+          name: Deploy to dev
+          command: ./node_modules/.bin/firebase deploy --project default --only hosting:develop --token "$FIREBASE_TOKEN"
+  deploy-staging:
+    docker:
+      - image: circleci/node:14.15.1
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: yarn
+      - run:
+          name: Build project
+          command: yarn build
+      - run:
+          name: Deploy to dev
+          command: ./node_modules/.bin/firebase deploy --project staging --only hosting:staging --token "$FIREBASE_TOKEN"
+workflows:
+  test-build-deploy:
+    jobs:
+      - test # executes "test" job on every push
+      - build: # executes "build" job on every push, but only if "test" job succeeds
+          requires:
+            - test
+      - deploy-dev: # executes "deploy-dev" job on every push to "develop" branch
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - develop
+      - deploy-staging: # executes "deploy-staging" job on every push to "master" branch
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
