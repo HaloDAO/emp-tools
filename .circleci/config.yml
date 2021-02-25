@@ -58,6 +58,7 @@ workflows:
           requires:
             - test
       - deploy-dev: # executes "deploy-dev" job on every push to "develop" branch
+          context: emp-tools-dev
           requires:
             - build
           filters:
@@ -65,6 +66,7 @@ workflows:
               only:
                 - develop
       - deploy-staging: # executes "deploy-staging" job on every push to "master" branch
+          context: emp-tools-staging
           requires:
             - build
           filters:

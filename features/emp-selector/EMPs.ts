@@ -20,6 +20,6 @@ export const EMPs: { [networkId: number]: string[] } = {
 };
 
 export const HALODAO_EMPs: { [networkId: number]: string[] } = {
-  1: [],
-  42: [process.env.NEXT_PUBLIC_PHPDAI_FC_ADDRESS || ""],
+  1: [process.env.NEXT_PUBLIC_PHPDAI_MAINNET_FC_ADDRESS || ""],
+  42: [process.env.NEXT_PUBLIC_PHPDAI_KOVAN_FC_ADDRESS || ""],
 };
